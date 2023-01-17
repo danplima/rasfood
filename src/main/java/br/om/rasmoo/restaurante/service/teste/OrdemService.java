@@ -2,6 +2,7 @@ package br.om.rasmoo.restaurante.service.teste;
 
 import br.om.rasmoo.restaurante.dao.CardapioDao;
 import br.om.rasmoo.restaurante.dao.ClienteDao;
+import br.om.rasmoo.restaurante.dao.EnderecoDao;
 import br.om.rasmoo.restaurante.dao.OrdemDao;
 import br.om.rasmoo.restaurante.entity.Cliente;
 import br.om.rasmoo.restaurante.entity.Endereco;
@@ -17,25 +18,18 @@ public class OrdemService {
     public static void main(String[] args) {
         EntityManager entityManager = JPAUtil.getEntityManagerRasFood();
         entityManager.getTransaction().begin();
-
         CargaDeDadosUtil.cadastrarCategorias(entityManager);
         CargaDeDadosUtil.cadastrarProdutosCardapio(entityManager);
+        CargaDeDadosUtil.cadastrarClientes(entityManager);
+        CargaDeDadosUtil.cadastrarOrdensClientes(entityManager);
 
-        CardapioDao cardapioDao = new CardapioDao(entityManager);
-        ClienteDao clienteDao = new ClienteDao(entityManager);
-        OrdemDao ordemDao = new OrdemDao(entityManager);
+        EnderecoDao enderecoDao = new EnderecoDao(entityManager);
 
-        Endereco endereco = new Endereco("00000000","av. torquato","apt 304","Manaus","Amazonas");
-        Cliente cliente = new Cliente("11111111111","Daniel Lima");
-        cliente.addEndereco(endereco);
-        Ordem ordem = new Ordem(cliente);
-        ordem.addOrdensCardapio(new OrdensCardapio(cardapioDao.consultarPorId(1), 2));
-        ordem.addOrdensCardapio(new OrdensCardapio(cardapioDao.consultarPorId(2), 3));
-        clienteDao.cadastrar(cliente);
-        ordemDao.cadastrar(ordem);
-        System.out.println(ordem);
+        System.out.println(enderecoDao.consultarClientes("SP","Sao Paulo","augusta"));
         entityManager.getTransaction().commit();
         entityManager.close();
+
+
 
     }
 }

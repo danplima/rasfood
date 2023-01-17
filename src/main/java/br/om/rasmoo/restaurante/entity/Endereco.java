@@ -13,7 +13,7 @@ public class Endereco {
     private String complemento;
     private String cidade;
     private String estado;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Cliente cliente;
 
     public Endereco() {

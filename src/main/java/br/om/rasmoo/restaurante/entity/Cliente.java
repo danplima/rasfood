@@ -17,7 +17,7 @@ public class Cliente {
     public Cliente() {
     }
 
-    public Cliente(String cpf, String nomereco) {
+    public Cliente(String cpf, String nome) {
         this.cpf = cpf;
         this.nome = nome;
     }
@@ -27,7 +27,7 @@ public class Cliente {
         this.enderecoList.add(endereco);
     }
 
-    public String cpf() {
+    public String getCpf() {
         return cpf;
     }
 
@@ -35,7 +35,7 @@ public class Cliente {
         this.cpf = cpf;
     }
 
-    public String nome() {
+    public String getNome() {
         return nome;
     }
 
@@ -43,6 +43,13 @@ public class Cliente {
         this.nome = nome;
     }
 
+    public List<Endereco> getEnderecoList() {
+        return enderecoList;
+    }
+
+    public void setEnderecoList(List<Endereco> enderecoList) {
+        this.enderecoList = enderecoList;
+    }
 
     @Override
     public String toString() {
