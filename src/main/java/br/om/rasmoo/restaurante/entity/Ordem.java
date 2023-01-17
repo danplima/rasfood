@@ -16,7 +16,7 @@ public class Ordem {
     private BigDecimal valorTotal = BigDecimal.ZERO;
     @Column(name = "data_de_criacao")
     private LocalDateTime dataDeCriacao = LocalDateTime.now();
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Cliente cliente;
     @OneToMany(mappedBy = "ordem", cascade = CascadeType.ALL)
     private List<OrdensCardapio> ordensCardapioList = new ArrayList<>();
@@ -35,7 +35,7 @@ public class Ordem {
                 .multiply(BigDecimal.valueOf(ordensCardapio.getQuantidade())));
     }
 
-    public Integer id() {
+    public Integer getId() {
         return id;
     }
 
@@ -43,7 +43,7 @@ public class Ordem {
         this.id = id;
     }
 
-    public BigDecimal valorTotal() {
+    public BigDecimal getValorTotal() {
         return valorTotal;
     }
 
@@ -51,7 +51,7 @@ public class Ordem {
         this.valorTotal = valorTotal;
     }
 
-    public LocalDateTime dataDeCriacao() {
+    public LocalDateTime getDataDeCriacao() {
         return dataDeCriacao;
     }
 
@@ -59,7 +59,7 @@ public class Ordem {
         this.dataDeCriacao = dataDeCriacao;
     }
 
-    public Cliente cliente() {
+    public Cliente getCliente() {
         return cliente;
     }
 
@@ -67,7 +67,7 @@ public class Ordem {
         this.cliente = cliente;
     }
 
-    public List<OrdensCardapio> ordensCardapioList() {
+    public List<OrdensCardapio> getOrdensCardapioList() {
         return ordensCardapioList;
     }
 
